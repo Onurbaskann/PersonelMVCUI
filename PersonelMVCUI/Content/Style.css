@@ -1,0 +1,31 @@
+﻿.input-validation-error{
+    border: 1px solid red;
+}
+.btnKayit {
+    border:1px solid #dee2e6 !important;
+}
+    .btnKayit:hover {
+        border: 1px solid #e0ffcd !important;
+        background-color: #e0ffcd;
+    }
+.btnGuncel {
+    border: 1px solid #dee2e6 !important;
+}
+    .btnGuncel:hover {
+        border: 1px solid #c7f2e3 !important;
+        background: #c7f2e3;
+    }
+.btnSil {
+    border: 1px solid #dee2e6 !important;
+}
+    .btnSil:hover {
+        border: 1px solid #fc7978 !important;
+        background: #fc7978;
+    }
+.btnListele {
+    border: 1px solid #dee2e6 !important;
+}
+    .btnListele:hover {
+        border: 1px solid #eeeeee !important;
+        background: #eeeeee;
+    }

@@ -1,0 +1,19 @@
+﻿@using PersonelMVCUI.ViewModels
+@model MesajViewModels
+
+@{
+    Layout = null;
+}
+
+@if (Model.Status)
+{
+    <div class="alert alert-success" role="alert">
+        @Model.Mesaj
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Bir sorun oluştu lütfen tekrar deneyiniz.
+    </div>
+}

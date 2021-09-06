@@ -1,0 +1,38 @@
+﻿    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+
+        <div class="container-fluid">
+            <div style="position:absolute; right: 50px;">Hoş geldiniz @HttpContext.Current.User.Identity.Name</div> <!--Navbar'da giriş yapanın adını göstermek için-->
+
+            <a class="navbar-brand" href="#">Personel Yönetim Sistemi</a>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Departman">Departmanlar</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Personel">Personeller</a>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>-->
+                    </li>
+
+                    @if (User.IsInRole("A"))
+                    {
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/Kullanici">Kullanıcı</a></li>
+                    }
+
+                    <li class="nav-item"><a class="nav-link" href="Security/Login">Giriş Yap</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="Security/LogOut" tabindex="-1" aria-disabled="true">Çıkış Yap</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+        
+</nav>
+    <div style="position:absolute;left: 20px; top: 56px;">Personel: @{Html.RenderAction("ToplamPersonel", "Personel");}</div> <!--Html.RenderAction kullanımı-->

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PersonelMVCUI.Models.EntitiyFramework.KullaniciTb>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kullanıcı Bigi Ekranı</h2>
+
+@Html.ActionLink("Yeni Kullanıcı","Create",null,new {@class="btn btnKayit my-2" })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rol)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.id },new { @class = "btn btnGuncel" }) |             
+            @Html.ActionLink("Sil", "Delete", new { id=item.id },new {@class="btn btnSil" })
+        </td>
+    </tr>
+}
+
+</table>

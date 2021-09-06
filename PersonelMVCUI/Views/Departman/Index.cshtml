@@ -1,0 +1,38 @@
+﻿@using PersonelMVCUI.Models.EntitiyFramework
+@model List<DepartmanTb>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2>Deparman Listesi</h2>
+
+<a class="btn btnKayit my-2" href="/Yeni">Yeni Departman</a>
+
+<table class="table table-bordered " id="tblDepartman">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+            <th>Listele</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var departman in Model)
+        {
+        <tr>
+            <td>@departman.DepartmanID</td>
+            <td>@departman.DepartmanAd</td>
+            <td><a class="btn btnGuncel" href="/Departman/Guncelle/@departman.DepartmanID">Güncelle</a></td>
+            <!--Ajax ile silme işlemi için satıra "btnDepartmanSil" ve "data-id="departman.DepartmanID" kodlarını ekledik."-->
+            <td><a class="btn btnSil btnDepartmanSil" data-id="@departman.DepartmanID">Sil</a></td>
+            <td>@Ajax.ActionLink("Listele","Listele","Personel",new { id = departman.DepartmanID },new AjaxOptions {HttpMethod="GET",UpdateTargetId="PersonelListesi"},new {@class="btn btnListele"})</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+<div id="PersonelListesi"></div>

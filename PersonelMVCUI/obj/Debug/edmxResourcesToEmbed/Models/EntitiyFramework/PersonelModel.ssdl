@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DepartmanTb">
+    <Key>
+      <PropertyRef Name="DepartmanID" />
+    </Key>
+    <Property Name="DepartmanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmanAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KullaniciTb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rol" Type="nvarchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonelTb">
+    <Key>
+      <PropertyRef Name="PersonelID" />
+    </Key>
+    <Property Name="PersonelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersoneAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="PersonelSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmanID" Type="int" />
+    <Property Name="Maas" Type="smallint" />
+    <Property Name="DogumTarihi" Type="smalldatetime" />
+    <Property Name="Cinsiyet" Type="bit" Nullable="false" />
+    <Property Name="EvliMi" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PersonelTb_DepartmanTb">
+    <End Role="DepartmanTb" Type="Self.DepartmanTb" Multiplicity="0..1" />
+    <End Role="PersonelTb" Type="Self.PersonelTb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmanTb">
+        <PropertyRef Name="DepartmanID" />
+      </Principal>
+      <Dependent Role="PersonelTb">
+        <PropertyRef Name="DepartmanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonelDbModelStoreContainer">
+    <EntitySet Name="DepartmanTb" EntityType="Self.DepartmanTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciTb" EntityType="Self.KullaniciTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonelTb" EntityType="Self.PersonelTb" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PersonelTb_DepartmanTb" Association="Self.FK_PersonelTb_DepartmanTb">
+      <End Role="DepartmanTb" EntitySet="DepartmanTb" />
+      <End Role="PersonelTb" EntitySet="PersonelTb" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

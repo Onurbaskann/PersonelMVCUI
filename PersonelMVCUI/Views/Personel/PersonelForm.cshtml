@@ -1,0 +1,60 @@
+﻿@model PersonelMVCUI.ViewModels.PersonelFormViewModel
+@{
+    ViewBag.Title = "PersonelForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personel Formu</h2>
+<div id="mesaj"></div>
+
+@using (Ajax.BeginForm("Kaydet", "Personel", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "mesaj" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Personel.PersoneAd)
+        @Html.TextBoxFor(m => m.Personel.PersoneAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Personel.PersoneAd)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Personel.PersonelSoyad)
+        @Html.TextBoxFor(m => m.Personel.PersonelSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Personel.PersonelSoyad)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Personel.DepartmanID)
+        @Html.DropDownListFor(m => m.Personel.DepartmanID, new SelectList(Model.Departmanlar, "DepartmanID", "DepartmanAd"), "Departman Seçiniz", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Personel.DepartmanID)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Personel.Maas)
+        @Html.TextBoxFor(m => m.Personel.Maas, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Personel.Maas)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Personel.DogumTarihi)
+        @Html.TextBoxFor(m => m.Personel.DogumTarihi, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", onchange = "CheckDateTypeIsValid(this)" })
+        @Html.ValidationMessageFor(m => m.Personel.DogumTarihi)
+    </div>
+    <div class=" mb-3">
+        <label class="position-relative">
+            @Html.RadioButtonFor(m => m.Personel.Cinsiyet, true)Erkek
+        </label>
+        <label class="position-relative ms-1">
+            @Html.RadioButtonFor(m => m.Personel.Cinsiyet, false)Kadın
+        </label>
+    </div>
+    <div class="mb-3">
+        <label class="position-relative">
+            @Html.CheckBoxFor(m => m.Personel.EvliMi)Medeni  Durum
+        </label>
+    </div>
+    <div>
+        @Html.HiddenFor(m => m.Personel.PersonelID)
+        <input class="btn btnKayit my-3" type="submit" value="Kaydet" /> |
+        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn" })
+    </div>
+}
+@section scripts{    <!--Client Side Validation-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>    <!--Manage NuGet Packages'den "jquery validation" indirerek bu 2 script'i elde ediyoruz-->
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

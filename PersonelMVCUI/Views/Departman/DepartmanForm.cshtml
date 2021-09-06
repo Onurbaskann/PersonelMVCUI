@@ -1,0 +1,40 @@
+﻿<!--Razor için kullanacağımız modeli tanımlıyoruz(Formu oluşturuken bu modele bakacak(baz alacak)-->
+@model PersonelMVCUI.Models.EntitiyFramework.DepartmanTb
+@{
+    ViewBag.Title = "DepartmanForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--      // "html helper" ile devam edeceğimiz için bu formu kullanmayacağız.
+
+            <form method="post" action="">
+               <div class="mb-3">
+                    <label class="form-label">Departman Adı</label>
+                    <input type="text" name="DepartmanAd" class="form-control" />
+               </div>
+                <button type="submit" class="btn btn-success">Ekle</button>
+            </form>
+
+    -->
+
+<div id="mesaj"></div>
+<!--"Ekleme" ve "Güncelleme" işlemlerini tek bir View(DepartmanForm) üzerinden hallettik-->
+<!--Razor kullanarak ("html helper" ile) form oluşturuyoruz.(html kullanmadan yukarıda ki formu yazabiliyoruz.) -->
+<!--"Html helper" syntax'ı=>Disposable obje ürettiği için manuel olarak sonlandırmamız gerektiği için sonlandıracağımız şeyi "using () { }" içine yazdık "action","controller","...metod(get, post ... ne kullanmak istiyorsan)"-->
+@using (Ajax.BeginForm("Kaydet", "Departman", new AjaxOptions { HttpMethod = "Post", UpdateTargetId="mesaj" }))//Ajax.begin form kullandık."Post" ettikten sonra "Index" view'ne geri dönmüyoruz.Aynı view'de kalmaya devam ediyoruz.
+{
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        @Html.LabelFor(m => m.DepartmanAd)       <!--"m" dediği "model" ve "DepartmanAd" modeldeki DepartmanTb den gelmektedir.-->
+        @Html.TextBoxFor(m => m.DepartmanAd, new { @class = "form-control" })       <!--Css kullanmak istiyorsan "new{class=""}" metodunu kullanmalısın-->
+        @Html.ValidationMessageFor(m => m.DepartmanAd)
+    </div>
+    <div>
+        @Html.HiddenFor(m => m.DepartmanID)
+        <button type="submit" class="btn btnKayit my-3">Kaydet</button> |
+        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn" })
+    </div>
+}
+@section scripts{   <!--Client Side Validation-->
+    <script src="~/Scripts/jquery.validate.min.js"></script>    <!--Manage NuGet Packages'den "jquery validation" indirerek bu 2 script'i elde ediyoruz-->
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

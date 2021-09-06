@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PersonelMVCUI.Models.EntitiyFramework.PersonelTb>
+
+@{
+    Layout = null;
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Maas</th>
+            <th>Yas</th>
+            <th>Doğum Tarihi</th>
+            <th>Cinsiyet</th>
+            <th>Evlilik Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var personel in Model)
+        {
+            <tr>
+                <td>@personel.PersoneAd</td>
+                <td>@personel.PersonelSoyad</td>
+                <td>@personel.Maas</td>
+                <td>@(DateTime.Now.Year - personel.DogumTarihi.Value.Year)</td>
+                <td>@personel.DogumTarihi.Value.ToString("dd-MM-yyyy")</td>
+                <td>@(personel.Cinsiyet == true ? "Erkek" : "Kadın")</td>
+                <td>@(personel.EvliMi == true ? "Evli" : "Bekar")</td>
+            </tr>
+        }
+    </tbody>
+</table>

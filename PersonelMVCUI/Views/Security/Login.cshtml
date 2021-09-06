@@ -1,0 +1,58 @@
+﻿@model PersonelMVCUI.Models.EntitiyFramework.KullaniciTb
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            @ViewBag.Mesaj
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div id="formFooter" style="border-radius:10px 10px 0 0; border-bottom:1px solid #dce8f1; border-top:none;">
+
+            </div>
+
+            <!-- Login Form -->
+            @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+
+                    @Html.TextBoxFor(m => m.Ad, new { placeholder = "Kullanıcı Adı", @class = "fadeIn second loginText form-control" })
+                </div>
+                <div>
+
+                    @Html.PasswordFor(m => m.Sifre, new { placeholder = "Şifre", @class = "fadeIn second loginPassword form-control" })
+                </div>
+
+                <input type="submit" class="fadeIn fourth" value="Giriş Yap">
+            }
+
+            <!--  <form>
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="Kullanıcı Adı">
+          <input type="password" id="password" class="fadeIn third" name="login" placeholder="Şifre">
+          <input type="submit" class="fadeIn fourth" value="Giriş Yap">
+      </form>
+    -->
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <!--<a class="underlineHover" href="#">Forgot Password?</a>-->
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

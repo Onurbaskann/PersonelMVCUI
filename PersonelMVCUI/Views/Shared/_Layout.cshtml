@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"><!--Jquery Datatable Plugin-->
+</head>
+<body>
+    @Html.Partial("_Navbar")
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script> <!--Ajax.ActionLink için Manage NuGet Packages indirdik.-->
+    <script src="~/Scripts/Custom.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script><!--Jquery Datatable Plugin-->
+    <script src="~/Scripts/bootbox.min.js"></script>    <!--alert box için kullandığımız jquery kütüphanesi-->
+    @RenderSection("scripts", false)    <!--Client Side Validation-->
+
+</body>
+</html>
